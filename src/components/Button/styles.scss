@@ -1,0 +1,104 @@
+@import "../../assets/colors";
+// @import "../../assets/typography";
+
+$ff-body: "Fira Sans", sans-serif;
+$fs-subtitle: 16px;
+$fs-body: 14px;
+$fs-description: 13px;
+
+@mixin button($state, $clr-main, $clr-hover-active, $clr-disabled) {
+  .button-#{$state} {
+    color: $clr-white;
+    background-color: $clr-main;
+    border: none;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $clr-hover-active;
+      color: $clr-white;
+      text-decoration: none;
+      outline: none;
+    }
+    &:disabled {
+      background-color: $clr-disabled;
+      cursor: auto;
+      & > span {
+        opacity: 0.5;
+      }
+    }
+    &-outline {
+      background-color: $clr-white;
+      color: $clr-main;
+      border: 2px solid $clr-main;
+
+      &:hover,
+      &:active {
+        color: $clr-hover-active;
+        background-color: $clr-white;
+        border-color: $clr-hover-active;
+      }
+      &:disabled {
+        background-color: $clr-white;
+        border-color: $clr-disabled;
+        color: $clr-disabled;
+        cursor: auto;
+        & > span {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 160px;
+  width: fit-content;
+  padding: 10px 16px;
+  height: 46px;
+  text-transform: uppercase;
+  font-family: "Montserrat", "Roboto", sans-serif;
+  border-radius: 4px;
+  outline: none;
+  font-weight: 700;
+  font-size: $fs-subtitle;
+  line-height: 18px;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+
+  &-reversed {
+    flex-direction: row-reverse;
+  }
+
+  a.button-icon,
+  &-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & img {
+      width: 100%;
+    }
+  }
+}
+
+@include button(
+  "primary",
+  $clr-primary-main,
+  $clr-primary-hover,
+  $clr-disabled
+);
+@include button(
+  "secondary",
+  $clr-secondary-main,
+  $clr-secondary-hover,
+  $clr-disabled
+);
+@include button("warning", $clr-error-main, $clr-error-hover, $clr-disabled);

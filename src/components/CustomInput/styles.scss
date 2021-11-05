@@ -1,0 +1,19 @@
+fieldset {
+  border: 1px solid grey;
+  width: fit-content;
+  border-radius: 5px;
+  margin: 1rem auto;
+  min-width: 300px;
+
+  label {
+    font-size: 10px;
+    font-style: italic;
+    margin-right: 0.5rem;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    font-weight: 300;
+  }
+}

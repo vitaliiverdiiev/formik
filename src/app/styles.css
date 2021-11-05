@@ -1,0 +1,20 @@
+body {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-image: url(../assets/wooden-plank-textured-background-material.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.app {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}

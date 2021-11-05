@@ -1,0 +1,137 @@
+@import "../../assets/colors";
+
+$ff-body: "Fira Sans", sans-serif;
+$fs-subtitle: 16px;
+$fs-body: 14px;
+$fs-description: 13px;
+
+.fh-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: $clr-dark-grey;
+  margin-bottom: 8px;
+
+  &-label {
+    font-family: $ff-body;
+    font-weight: 400;
+    font-style: normal;
+    font-size: $fs-body;
+    line-height: 1.2;
+    margin-bottom: 5px;
+    color: $clr-dark-grey;
+  }
+
+  &-required {
+    color: $clr-error-color;
+  }
+
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    i {
+      font-size: 25px;
+      color: inherit;
+    }
+  }
+
+  &-icon {
+    display: block;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    & img {
+      width: 100%;
+    }
+
+    & + input {
+      padding-left: 45px;
+    }
+
+    &-reverse {
+      position: absolute;
+      left: unset;
+      right: 15px;
+
+      & + input {
+        padding-left: 15px;
+        padding-right: 45px;
+      }
+    }
+  }
+
+  &-field {
+    width: 100%;
+    height: 46px;
+    padding: 15px 15px 12px 15px;
+    border: 1px solid $clr-border-main;
+    box-sizing: border-box;
+    color: inherit;
+    font-family: $ff-body;
+    font-weight: 400;
+    font-style: normal;
+    font-size: $fs-subtitle;
+    line-height: 1.2;
+    border-radius: 4px;
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-error-message {
+    color: $clr-error-color;
+    font-family: $ff-body;
+    font-weight: 400;
+    font-style: normal;
+    font-size: $fs-description;
+    line-height: 1.4;
+    margin-top: 4px;
+    position: relative;
+    // padding-left: 25px;
+
+    &:before {
+      content: "\f071";
+      font-family: "Font Awesome 5 Free";
+      font-size: $fs-description;
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  &-warning {
+    & label {
+      color: $clr-error-color;
+    }
+
+    & .fh-input-icon {
+      color: $clr-error-color;
+    }
+
+    & input {
+      color: $clr-error-color;
+      border-color: $clr-error-color;
+    }
+  }
+
+  &-disabled {
+    & input,
+    & label,
+    .fh-input-required {
+      color: $clr-border-main;
+    }
+
+    & .fh-input-icon img {
+      filter: grayscale(100%);
+    }
+  }
+}
