@@ -4,22 +4,19 @@ import { string, object, number, array } from "yup";
 
 import Input from "components/Input/Input";
 import Button from "components/Button/Button";
-import CustomInput from "components/CustomInput/CustomInput";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./styles.scss";
 
-const emptyShopping = { name: "", price: 0, book: "" };
+const emptyShopping = { name: "", price: 0 };
 
-const handleAddChange = (push, lastFiled) => {
-  console.log("SHOULD ADD NEW LINE NOW");
-  // if (
-  //   lastFiled[lastFiled.length - 1].name !== "" ||
-  //   lastFiled[lastFiled.length - 1].price !== "" ||
-  //   lastFiled[lastFiled.length - 1].book !== ""
-  // ) {
-  //   push(emptyShopping);
-  // }
+const handleAddChange = (values, push) => {
+  if (
+    values.shoppings[values.shoppings.length - 1].name !== "" ||
+    values.shoppings[values.shoppings.length - 1].price !== 0
+  ) {
+    push(emptyShopping);
+  }
 };
 
 const LoginForm = () => {
@@ -38,12 +35,11 @@ const LoginForm = () => {
             object({
               name: string().required().min(3),
               price: string().required().min(3),
-              book: string().required().min(3),
             })
           ),
         })}
         onSubmit={(values) => console.log(values)}>
-        {({ values, errors, handleChange, setFieldValue, field }) => (
+        {({ values, errors }) => (
           <Form>
             <div className="row ">
               <Field
@@ -71,40 +67,26 @@ const LoginForm = () => {
                         name={`shoppings[${index}].name`}
                         component={Input}
                         placeholder="Name"
-                        // warning={errors.shoppings[index].name}
                         classes="col-6"
-                        onchange={(e) => {
-                          handleChange(e);
-                          handleAddChange(push, values.shoppings);
-                        }}
+                        value={values.shoppings[index].name}
+                        onchange={() => handleAddChange(values, push)}
                       />
                       <Field
                         name={`shoppings[${index}].price`}
                         component={Input}
                         placeholder="Price"
-                        // warning={errors.shoppings[index].price}
-                        // type="number"
+                        value={values.shoppings[index].price}
+                        type="number"
                         classes="col"
-                        onchange={(e) => {
-                          handleAddChange(push, values.shoppings);
-                          handleChange(e);
-                        }}
-                      />
-                      <Field
-                        name={`shoppings[${index}].book`}
-                        component={CustomInput}
-                        onchange={(e) => {
-                          console.log(e);
-                          handleAddChange(push, values.shoppings);
-                          handleChange(e);
-                        }}
+                        onchange={() => handleAddChange(values, push)}
                       />
                       <Button
                         type="button"
                         value="Delete"
                         color="warning"
-                        onclick={() => remove(index)}
-                        // disabled={isSubmitting}
+                        onclick={() => {
+                          remove(index);
+                        }}
                         classes="col-2"
                       />
                     </div>
@@ -114,7 +96,6 @@ const LoginForm = () => {
                     value="Add"
                     color="primary"
                     onclick={() => push(emptyShopping)}
-                    // disabled={isSubmitting}
                     classes="col-12 mt-3 mb-5"
                   />
                 </>
@@ -127,6 +108,7 @@ const LoginForm = () => {
           </Form>
         )}
       </Formik>
+      <Input />
     </div>
   );
 };

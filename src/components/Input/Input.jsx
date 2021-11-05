@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classNames from "classnames";
 
 import "./styles.scss";
@@ -13,15 +13,19 @@ const Input = ({
   value,
   label,
   icon,
+  field,
+  form,
   onblur,
   onchange,
   reverse,
   warning,
-  field,
 }) => {
-  const [inputValue, setInputValue] = useState("");
-
-  const onChangeHandler = (e) => setInputValue(e.target.value);
+  const onchangeHandler = (e) => {
+    if (form && field) {
+      form.setFieldValue(field.name, e.target.value);
+    }
+    onchange && onchange();
+  };
 
   const inputClasses = classNames("fh-input", classes, {
     "fh-input-warning": warning,
@@ -47,12 +51,11 @@ const Input = ({
           type={type ? type : "text"}
           name={name}
           placeholder={placeholder}
-          value={value ? value : inputValue}
-          onChange={(e) => (onchange ? onchange(e) : onChangeHandler(e))}
+          value={value}
+          onChange={onchangeHandler}
           onBlur={(e) => onblur && onblur(e)}
           required={required}
           disabled={disabled}
-          {...field}
         />
       </div>
       {warning && (

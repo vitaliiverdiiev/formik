@@ -2,20 +2,27 @@ import React from "react";
 
 import "./styles.scss";
 
-const CustomInput = ({ label, type, name, field, placeholder, onchange }) => {
-  const handleChange = (ev) => {
-    onchange?.(ev.target.value);
-  };
-
+const CustomInput = ({
+  label,
+  type,
+  name,
+  field,
+  form,
+  placeholder,
+  onchange,
+  classes,
+}) => {
   return (
-    <fieldset>
+    <fieldset className={classes}>
       {label && <label>{label}</label>}
       <input
         type={type ? type : "text"}
         name={name}
         placeholder={placeholder}
-        onChange={handleChange}
-        {...field}
+        onChange={(e) => {
+          form.setFieldValue(field.name, e.target.value);
+          onchange();
+        }}
       />
     </fieldset>
   );

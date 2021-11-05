@@ -1,3 +1,4 @@
+import FormikMUIForm from "components/FormikMUIForm/FormikMUIForm";
 import React from "react";
 // import AutoAddedForm from "../components/AutoAddedForm/AutoAddedForm";
 // import AutoAddedForm from "../components/AutoAddedForm/AutoAddedForm";
@@ -9,6 +10,7 @@ import "./styles.css";
 const App = (props) => {
   return (
     <div className="app">
+      {/* <FormikMUIForm /> */}
       <LoginForm />
     </div>
   );
